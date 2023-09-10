@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Buying page</title>
+  <!-- Add your custom styles if needed -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+  </style>
+</head>
+<body>
+   <h1>right now you buying the product</h1>
+   <h2>your session is open please be faster because the session is working for 1 hours</h2>
+  <!-- PayPal Checkout Button -->
+  <div id="paypal-button-container"></div>
+
+  <!-- Include the PayPal JavaScript SDK -->
+  <script src="https://www.paypal.com/sdk/js?client-id=AYzngBC2C1XQ6ZEwcjaQDj2OVI2Q98RC0EoI2uT-DonqVosU7p7dzoQLut0A0JFB3C_JTQ1YgeQiloCW"></script>
+
+  <!-- Script to handle PayPal checkout -->
+  <script>
+    paypal.Buttons({
+      createOrder: function(data, actions) {
+        // Set up the transaction details
+        return actions.order.create({
+          purchase_units: [{
+            amount: {
+              value: '500' // The price of your product
+            }
+          }]
+        });
+      },
+      onApprove: function(data, actions) {
+        // Capture the funds and show a thank-you message
+        return actions.order.capture().then(function(details) {
+          alert('Thank you for your purchase!');
+          // Automatically initiate the download
+          window.location.href = 'fireminerFree/FireminerFree.zip';
+        });
+      }
+    }).render('#paypal-button-container');
+  </script>
+</body>
+</html>

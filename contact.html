@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+</head>
+<body>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.contact-form {
+    width: 700px;
+    padding: 20px;
+    background-color: #333333;
+    border-radius: 5px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #ffffff;
+    color: #1a1a1a;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #f2f2f2;
+}
+
+    </style>
+    
+    <div class="contact-form">
+        <h1>Contact Us</h1>
+       <form action="#" method="post">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="surname">Surname</label>
+                <input type="text" id="surname" name="surname" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+            </div>
+            <button id="btn"type="submit">Send Message</button>
+        </form>
+    </div>
+    <script src="https://smtpjs.com/v3/smtp.js">
+    </script>
+    <script>
+        var btn = document.getElementById('btn');
+        btn.addEventListener('click', function(e) {
+            e.preventDefault()
+            console.log('message send to owner')
+            var name = document.getElementById('name').value;
+            var surname = document.getElementById('surname').value;
+            var email = document.getElementById('email').value;
+            var phone = document.getElementById('phone').value;
+            var message = document.getElementById('message').value;
+            var body = 'Name: '+name + '<br/> surname: ' + surname + '<br/> email: ' + email + '<br/> phone: ' + phone + '<br/> message: ' + message;
+
+
+                            Email.send({
+                    SecureToken : "1d1e9ae8-fa09-420c-9c11-b004362261c3",
+                    To : 'omeribrahimov1995@gmail.com',
+                    From : "omeribrahimov1995@gmail.com",
+                    Subject : "a message from new user",
+                    Body : body
+                }).then(
+                    message => alert(message)
+                );
+        })
+    </script>
+</body>
+</html>
